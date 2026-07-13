@@ -18,10 +18,10 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(99, 102, 241, 0.15);
-  border: 1px solid rgba(99, 102, 241, 0.3);
-  color: var(--color-primary-light);
-  padding: 0.4rem 1rem;
+  background: rgba(34, 211, 238, 0.05);
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  color: var(--color-accent);
+  padding: 0.4rem 1.2rem;
   border-radius: 20px;
   font-size: 0.85rem;
   width: fit-content;

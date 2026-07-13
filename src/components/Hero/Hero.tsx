@@ -5,13 +5,18 @@ const Hero: FC = () => {
   return (
     <section className={styles.hero}>
       <div className={styles.content}>
-        <span className={styles.badge}>✦ Disponible pour des opportunités</span>
+        <span className={styles.badge}>
+          <span style={{ color: "#22c55e", fontSize: "0.6rem" }}>●</span>
+          Disponible pour des opportunités
+        </span>
         <h1 className={styles.title}>
           Gabriel <br />
           <span className={styles.titleAccent}>Toledano</span>
         </h1>
         <p className={styles.subtitle}>
-          Développeur front-end <strong>junior</strong> — ex-Graphiste
+          Développeur front-end{" "}
+          <strong style={{ color: "var(--color-accent)" }}>junior</strong> —
+          ex-Graphiste
         </p>
         <p className={styles.description}>
           Reconverti du print au code, je construis des interfaces React
