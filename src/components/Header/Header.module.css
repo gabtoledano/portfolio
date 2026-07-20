@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem var(--spacing-lg);
+  padding: 1.25rem 20rem;
   background-color: rgba(10, 10, 20, 0.85);
   backdrop-filter: blur(10px);
   z-index: 100;
@@ -16,7 +16,11 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-text);
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  background: linear-gradient(
+    135deg,
+    var(--color-primary),
+    var(--color-primary-light)
+  );
   padding: 0.4rem 0.75rem;
   border-radius: var(--radius-sm);
 }
@@ -31,6 +35,23 @@
   color: var(--color-text-muted);
   font-size: 0.95rem;
   transition: color var(--transition);
+  position: relative;
+}
+
+.nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transition: width var(--transition);
+}
+
+.nav a:hover::after {
+  width: 100%;
 }
 
 .nav a:hover {

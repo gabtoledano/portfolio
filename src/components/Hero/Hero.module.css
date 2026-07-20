@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 23rem;
+  padding: 0 20rem;
   gap: var(--spacing-md);
 }
 
