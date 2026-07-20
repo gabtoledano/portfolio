@@ -1,5 +1,7 @@
 import type { FC } from "react";
 import styles from "./Hero.module.css";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { HiMail } from "react-icons/hi";
 
 const Hero: FC = () => {
   return (
@@ -40,17 +42,21 @@ const Hero: FC = () => {
             href="https://github.com/gabtoledano"
             target="_blank"
             rel="noreferrer"
+            aria-label="GitHub"
           >
-            GitHub
+            <FaGithub />
           </a>
           <a
             href="https://linkedin.com/in/gabrieltoledano"
             target="_blank"
             rel="noreferrer"
+            aria-label="LinkedIn"
           >
-            LinkedIn
+            <FaLinkedin />
           </a>
-          <a href="mailto:gabrieltoledano19@gmail.com">Email</a>
+          <a href="mailto:gabrieltoledano19@gmail.com" aria-label="Email">
+            <HiMail />
+          </a>
         </div>
       </div>
 
@@ -122,6 +128,9 @@ const Hero: FC = () => {
           </code>
         </pre>
       </div>
+      <a href="#about" className={styles.scrollDown}>
+        <span>↓</span>
+      </a>
     </section>
   );
 };

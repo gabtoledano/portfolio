@@ -1,9 +1,10 @@
 .hero {
+  position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20rem;
+  padding: 0 10rem;
   gap: var(--spacing-md);
 }
 
@@ -98,12 +99,14 @@
 
 .socials a {
   color: var(--color-text-muted);
-  font-size: 0.9rem;
+  font-size: 1.4rem;
   transition: color var(--transition);
+  display: flex;
+  align-items: center;
 }
 
 .socials a:hover {
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .codeBlock {
@@ -175,4 +178,18 @@
 
 .boolean {
   color: #c792ea;
+}
+
+.scrollDown {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--color-text-muted);
+  font-size: 1.5rem;
+  transition: color var(--transition);
+}
+
+.scrollDown:hover {
+  color: var(--color-accent);
 }
