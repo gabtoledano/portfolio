@@ -13,7 +13,7 @@
   color: var(--color-accent);
   font-size: 1rem;
   font-weight: 500;
-  font-family: "Fira Code", "Courier New", monospace;
+  font-family: var(--font-mono);
 }
 
 .sectionTitle h2 {
