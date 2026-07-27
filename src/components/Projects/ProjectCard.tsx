@@ -12,6 +12,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   return (
     <div className={styles.card}>
       <div className={styles.image}>
+        <img src={project.image} alt={project.title} className={styles.img} />
         <span className={styles.tag}>{project.tag}</span>
         <div className={styles.imageContent}>
           <h3 className={styles.title}>{project.title}</h3>
@@ -42,7 +43,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
               rel="noreferrer"
               className={styles.link}
             >
-              <HiExternalLink /> Démo live
+              <HiExternalLink /> {project.liveLabel || "Démo live"}
             </a>
           )}
         </div>

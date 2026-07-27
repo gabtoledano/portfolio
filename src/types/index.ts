@@ -6,6 +6,7 @@ export interface Project {
   stack: string[]
   githubUrl: string
   liveUrl?: string
+  liveLabel?: string
   image: string
 }
 

@@ -1,4 +1,8 @@
 import type { Project } from "../types";
+import argentbank from '../assets/images/projects/argentbank.webp';
+import ninaCarducci from '../assets/images/projects/nina-carducci.webp';
+import kasa from '../assets/images/projects/kasa.webp';
+import menuMaker from '../assets/images/projects/menu-maker.webp';
 
 export const projects: Project[] = [
   {
@@ -9,7 +13,9 @@ export const projects: Project[] = [
       "Application bancaire fullstack développée avec React, Redux Toolkit et Node.js. Système d'authentification complet via JWT et modélisation des routes API en Swagger.",
     stack: ["React", "Redux Toolkit", "Node.js", "JWT", "Swagger"],
     githubUrl: "https://github.com/gabtoledano/argentbank-frontend",
-    image: "/assets/images/projects/argentbank.webp",
+    liveUrl: "https://github.com/gabtoledano/argentbank-backend",
+    liveLabel: "Back-end",
+    image: argentbank,
   },
   {
     id: 2,
@@ -20,7 +26,7 @@ export const projects: Project[] = [
     stack: ["Lighthouse", "WebP", "Schema.org", "SEO", "WCAG"],
     githubUrl: "https://github.com/gabtoledano/ninacarducci",
     liveUrl: "https://gabtoledano.github.io/ninacarducci",
-    image: "/assets/images/projects/nina-carducci.webp",
+    image: ninaCarducci,
   },
   {
     id: 3,
@@ -30,7 +36,8 @@ export const projects: Project[] = [
       "Application de location d'appartements entre particuliers développée en React. Routing dynamique, composants réutilisables et responsive mobile complet.",
     stack: ["React", "React Router v6", "CSS Modules", "Figma"],
     githubUrl: "https://github.com/gabtoledano/kasa",
-    image: "/assets/images/projects/kasa.webp",
+    liveUrl: "https://gabtoledano.github.io/kasa/",
+    image: kasa,
   },
   {
     id: 4,
@@ -40,6 +47,9 @@ export const projects: Project[] = [
       "Mission de cadrage technique pour une application SaaS de création de menus. Spécifications complètes, Kanban Notion de 23 cartes et veille technologique structurée.",
     stack: ["Kanban", "Agile", "Notion", "Feedly", "Architecture"],
     githubUrl: "https://github.com/gabtoledano/menu-maker",
-    image: "/assets/images/projects/menu-maker.webp",
+    liveUrl:
+      "https://docs.google.com/presentation/d/1GfsrY3lPA3raw9xjFSJRFfjzuhm8lLLKeFm9oteewhY/edit?usp=sharing",
+    liveLabel: "Voir présentation",
+    image: menuMaker,
   },
 ];
