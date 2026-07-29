@@ -8,7 +8,7 @@ const Hero: FC = () => {
     <section className={styles.hero}>
       <div className={styles.content}>
         <span className={styles.badge}>
-          <span style={{ color: "#22c55e", fontSize: "0.6rem" }}>●</span>
+          <span className={styles.dot}></span>
           Disponible pour des opportunités
         </span>
         <h1 className={styles.title}>
@@ -62,9 +62,18 @@ const Hero: FC = () => {
 
       <div className={styles.codeBlock}>
         <div className={styles.codeHeader}>
-          <span className={styles.dot} style={{ background: "#ff5f57" }}></span>
-          <span className={styles.dot} style={{ background: "#febc2e" }}></span>
-          <span className={styles.dot} style={{ background: "#28c840" }}></span>
+          <span
+            className={styles.windowDot}
+            style={{ background: "#ff5f57" }}
+          ></span>
+          <span
+            className={styles.windowDot}
+            style={{ background: "#febc2e" }}
+          ></span>
+          <span
+            className={styles.windowDot}
+            style={{ background: "#28c840" }}
+          ></span>
           <span className={styles.fileName}>portfolio.tsx</span>
         </div>
         <pre className={styles.code}>

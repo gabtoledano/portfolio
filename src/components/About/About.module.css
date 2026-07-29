@@ -132,6 +132,6 @@
 
 .locationIcon {
   color: var(--color-accent);
-  font-family: "Fira Code", monospace;
+  font-family: var(--font-mono);
   font-weight: 600;
 }

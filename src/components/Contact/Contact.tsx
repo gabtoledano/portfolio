@@ -1,5 +1,4 @@
-import { useState } from "react";
-import React from "react";
+import React, { useState } from "react";
 import type { FC } from "react";
 import emailjs from "@emailjs/browser";
 import type { ContactForm } from "../../types";
