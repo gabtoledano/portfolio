@@ -62,3 +62,13 @@
   padding: 0.4rem 0.9rem;
   border-radius: var(--radius-sm);
 }
+
+@media (max-width: 768px) {
+  .skills {
+    padding: var(--spacing-xl) 1.5rem 3rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

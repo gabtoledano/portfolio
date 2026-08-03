@@ -213,3 +213,28 @@
     transform: translateY(0);
   }
 }
+
+@media (max-width: 768px) {
+  .contact {
+    padding: var(--spacing-md) 1.5rem 2rem;
+  }
+
+  .content {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  .input,
+  .textarea,
+  .btn {
+    width: 100%;
+  }
+
+  .right {
+    width: 100%;
+  }
+}
