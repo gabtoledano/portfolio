@@ -48,8 +48,8 @@ export const projects: Project[] = [
     stack: ["Kanban", "Agile", "Notion", "Feedly", "Architecture"],
     githubUrl: "https://github.com/gabtoledano/menu-maker",
     liveUrl:
-      "https://docs.google.com/presentation/d/1GfsrY3lPA3raw9xjFSJRFfjzuhm8lLLKeFm9oteewhY/edit?usp=sharing",
-    liveLabel: "Voir présentation",
+      "https://jasper-deal-5f1.notion.site/Kanban-Menu-Maker-by-Qwenta-37219b09f5948073919acfcd8f8aaff8",
+    liveLabel: "Voir Kanban",
     image: menuMaker,
   },
 ];

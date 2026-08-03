@@ -206,3 +206,28 @@
 .scrollDown:hover {
   color: var(--color-accent);
 }
+
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    padding: 6rem 1.5rem 3rem;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .codeBlock {
+    display: none;
+  }
+
+  .title {
+    font-size: 3rem;
+  }
+
+  .content {
+    max-width: 100%;
+  }
+
+  .description {
+    max-width: 100%;
+  }
+}
