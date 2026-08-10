@@ -1,6 +1,7 @@
 import type { FC } from "react";
 import styles from "./About.module.css";
-import photoProfil from "../../assets/images/photo-profil.webp";
+
+const photoProfil = '/images/photo-profil.webp'
 
 const About: FC = () => {
   return (
