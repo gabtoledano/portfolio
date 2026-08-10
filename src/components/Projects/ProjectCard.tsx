@@ -1,8 +1,7 @@
 import type { FC } from "react";
 import type { Project } from "../../types";
 import styles from "./ProjectCard.module.css";
-import { FaGithub } from "react-icons/fa";
-import { HiExternalLink } from "react-icons/hi";
+import { IconGithub, IconExternalLink } from "../Icons/Icons";
 
 interface ProjectCardProps {
   project: Project;
@@ -34,7 +33,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
             rel="noreferrer"
             className={styles.link}
           >
-            <FaGithub /> Code
+            <IconGithub size={16} /> Code
           </a>
           {project.liveUrl && (
             <a
@@ -43,7 +42,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
               rel="noreferrer"
               className={styles.link}
             >
-              <HiExternalLink /> {project.liveLabel || "Démo live"}
+              <IconExternalLink size={16} /> {project.liveLabel || "Démo live"}
             </a>
           )}
         </div>

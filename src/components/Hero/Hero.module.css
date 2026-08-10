@@ -89,11 +89,11 @@
 
 .btnPrimary {
   background: var(--color-primary);
-  color: var(--color-text);
+  color: #ffffff;
   padding: 0.75rem 1.5rem;
   border-radius: var(--radius-md);
   font-size: 0.95rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: background var(--transition);
 }
 
@@ -172,7 +172,7 @@
 }
 
 .comment {
-  color: #6a737d;
+  color: #8b949e;
 }
 .keyword {
   color: #c792ea;

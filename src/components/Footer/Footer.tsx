@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import styles from "./Footer.module.css";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
+import { IconGithub, IconLinkedin, IconMail } from "../Icons/Icons";
 
 const Footer: FC = () => {
   return (
@@ -14,18 +13,20 @@ const Footer: FC = () => {
           href="https://github.com/gabtoledano"
           target="_blank"
           rel="noreferrer"
+          aria-label="GitHub"
         >
-          <FaGithub />
+          <IconGithub size={20} />
         </a>
         <a
           href="https://linkedin.com/in/gabrieltoledano"
           target="_blank"
           rel="noreferrer"
+          aria-label="LinkedIn"
         >
-          <FaLinkedin />
+          <IconLinkedin size={20} />
         </a>
-        <a href="mailto:gabrieltoledano19@gmail.com">
-          <HiMail />
+        <a href="mailto:gabrieltoledano19@gmail.com" aria-label="Email">
+          <IconMail size={20} />
         </a>
       </div>
     </footer>

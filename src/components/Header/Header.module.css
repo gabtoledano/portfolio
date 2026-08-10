@@ -60,11 +60,11 @@
 
 .cta {
   background: var(--color-primary);
-  color: var(--color-text);
+  color: #ffffff;
   padding: 0.6rem 1.25rem;
   border-radius: var(--radius-md);
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
   transition: background var(--transition);
 }
 

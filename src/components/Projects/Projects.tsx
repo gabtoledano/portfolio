@@ -2,7 +2,7 @@ import type { FC } from "react";
 import styles from "./Projects.module.css";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
-import { FaGithub } from "react-icons/fa";
+import { IconGithub } from "../Icons/Icons";
 
 const Projects: FC = () => {
   return (
@@ -23,7 +23,7 @@ const Projects: FC = () => {
           rel="noreferrer"
           className={styles.moreLink}
         >
-          <FaGithub /> Voir tous mes projets sur GitHub →
+          <IconGithub size={16} /> Voir tous mes projets sur GitHub
         </a>
       </div>
     </section>

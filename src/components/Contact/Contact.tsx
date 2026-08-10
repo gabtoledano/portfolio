@@ -3,8 +3,7 @@ import type { FC } from "react";
 import emailjs from "@emailjs/browser";
 import type { ContactForm } from "../../types";
 import styles from "./Contact.module.css";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
+import { IconGithub, IconLinkedin, IconMail } from "../Icons/Icons";
 
 interface InfoItem {
   icon: React.ReactNode;
@@ -58,19 +57,19 @@ const Contact: FC = () => {
 
   const infos: InfoItem[] = [
     {
-      icon: <HiMail />,
+      icon: <IconMail size={18} />,
       label: "Email",
       value: "gabrieltoledano19@gmail.com",
       href: "mailto:gabrieltoledano19@gmail.com",
     },
     {
-      icon: <FaLinkedin />,
+      icon: <IconLinkedin size={18} />,
       label: "LinkedIn",
       value: "linkedin.com/in/gabrieltoledano",
       href: "https://linkedin.com/in/gabrieltoledano",
     },
     {
-      icon: <FaGithub />,
+      icon: <IconGithub size={18} />,
       label: "Github",
       value: "github.com/gabtoledano",
       href: "https://github.com/gabtoledano",

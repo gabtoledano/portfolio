@@ -1,7 +1,6 @@
 import type { FC } from "react";
 import styles from "./Hero.module.css";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { HiMail } from "react-icons/hi";
+import { IconGithub, IconLinkedin, IconMail } from "../Icons/Icons";
 
 const Hero: FC = () => {
   return (
@@ -44,7 +43,7 @@ const Hero: FC = () => {
             rel="noreferrer"
             aria-label="GitHub"
           >
-            <FaGithub />
+            <IconGithub size={22} />
           </a>
           <a
             href="https://linkedin.com/in/gabrieltoledano"
@@ -52,10 +51,10 @@ const Hero: FC = () => {
             rel="noreferrer"
             aria-label="LinkedIn"
           >
-            <FaLinkedin />
+            <IconLinkedin size={22} />
           </a>
           <a href="mailto:gabrieltoledano19@gmail.com" aria-label="Email">
-            <HiMail />
+            <IconMail size={22} />
           </a>
         </div>
       </div>
