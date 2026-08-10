@@ -85,7 +85,6 @@
 .label {
   font-size: 0.8rem;
   color: var(--color-text-muted);
-  margin-bottom: 0.4rem;
 }
 
 .infoLabel {
@@ -236,5 +235,21 @@
 
   .right {
     width: 100%;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .contact {
+    padding: var(--spacing-xl) 6rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .contact {
+    padding: var(--spacing-xl) 4rem;
+  }
+
+  .content {
+    gap: 3rem;
   }
 }

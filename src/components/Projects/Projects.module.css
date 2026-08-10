@@ -62,3 +62,15 @@
     grid-template-columns: 1fr;
   }
 }
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .projects {
+    padding: var(--spacing-xl) 6rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .projects {
+    padding: var(--spacing-xl) 4rem;
+  }
+}

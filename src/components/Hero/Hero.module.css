@@ -231,3 +231,28 @@
     max-width: 100%;
   }
 }
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .hero {
+    padding: 0 6rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero {
+    padding: 0 4rem;
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: 3.5rem;
+  }
+
+  .codeBlock {
+    width: 300px;
+  }
+
+  .content {
+    max-width: 400px;
+  }
+}

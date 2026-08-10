@@ -36,3 +36,15 @@
     text-align: center;
   }
 }
+
+@media (min-width: 1025px) and (max-width: 1440px) {
+  .footer {
+    padding: 2rem 6rem;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .footer {
+    padding: 2rem 4rem;
+  }
+}
