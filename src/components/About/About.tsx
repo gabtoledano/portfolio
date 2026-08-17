@@ -37,7 +37,7 @@ const About: FC = () => {
             <strong>Intégrateur Web d'OpenClassrooms</strong>, que je termine
             aujourd'hui. En un peu plus d'un an, j'ai travaillé sur des projets
             concrets en React, Redux Toolkit, Node.js et gestion de projet
-            technique — construits de A à Z, seul, sans filet.
+            technique — — construits de A à Z, en totale autonomie.
           </p>
           <p>
             Mon background print m'a appris la rigueur, le souci du détail et la
