@@ -49,3 +49,16 @@ img {
   background: var(--color-primary);
   border-radius: 3px;
 }
+
+.fadeIn {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+.fadeIn.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

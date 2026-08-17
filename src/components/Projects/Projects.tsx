@@ -3,10 +3,16 @@ import styles from "./Projects.module.css";
 import { projects } from "../../data/projects";
 import ProjectCard from "./ProjectCard";
 import { IconGithub } from "../Icons/Icons";
+import useInView from "../../hooks/useInView";
 
 const Projects: FC = () => {
+  const { ref, isInView } = useInView();
   return (
-    <section id="projects" className={styles.projects}>
+    <section
+      id="projects"
+      ref={ref}
+      className={`${styles.projects} fadeIn ${isInView ? "visible" : ""}`}
+    >
       <div className={styles.sectionTitle}>
         <span className={styles.number}>03 /</span>
         <h2>Projets</h2>

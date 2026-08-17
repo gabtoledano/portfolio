@@ -1,10 +1,17 @@
 import type { FC } from "react";
 import styles from "./About.module.css";
-import photoProfil from '../../assets/images/photo-profil.webp';
+import useInView from "../../hooks/useInView";
+import photoProfil from "../../assets/images/photo-profil.webp";
 
 const About: FC = () => {
+  const { ref, isInView } = useInView();
+
   return (
-    <section id="about" className={styles.about}>
+    <section
+      id="about"
+      ref={ref}
+      className={`${styles.about} fadeIn ${isInView ? "visible" : ""}`}
+    >
       <div className={styles.sectionTitle}>
         <span className={styles.number}>01 /</span>
         <h2>À propos</h2>

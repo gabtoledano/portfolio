@@ -1,10 +1,17 @@
 import type { FC } from "react";
 import styles from "./Skills.module.css";
 import { skills } from "../../data/skills";
+import useInView from "../../hooks/useInView";
 
 const Skills: FC = () => {
+  const { ref, isInView } = useInView();
+
   return (
-    <section id="skills" className={styles.skills}>
+    <section
+      id="skills"
+      ref={ref}
+      className={`${styles.skills} fadeIn ${isInView ? "visible" : ""}`}
+    >
       <div className={styles.sectionTitle}>
         <span className={styles.number}>02 /</span>
         <h2>Compétences</h2>

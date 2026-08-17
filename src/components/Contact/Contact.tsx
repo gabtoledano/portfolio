@@ -4,6 +4,7 @@ import emailjs from "@emailjs/browser";
 import type { ContactForm } from "../../types";
 import styles from "./Contact.module.css";
 import { IconGithub, IconLinkedin, IconMail } from "../Icons/Icons";
+import useInView from "../../hooks/useInView";
 
 interface InfoItem {
   icon: React.ReactNode;
@@ -13,6 +14,7 @@ interface InfoItem {
 }
 
 const Contact: FC = () => {
+  const { ref, isInView } = useInView();
   const [form, setForm] = useState<ContactForm>({
     name: "",
     email: "",
@@ -77,7 +79,11 @@ const Contact: FC = () => {
   ];
 
   return (
-    <section id="contact" className={styles.contact}>
+    <section
+      id="contact"
+      ref={ref}
+      className={`${styles.contact} fadeIn ${isInView ? "visible" : ""}`}
+    >
       <div className={styles.sectionTitle}>
         <span className={styles.number}>04 /</span>
         <h2>Contact</h2>

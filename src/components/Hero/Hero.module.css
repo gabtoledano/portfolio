@@ -6,6 +6,7 @@
   justify-content: space-between;
   padding: 0 20rem;
   gap: var(--spacing-md);
+  animation: heroFadeIn 0.8s ease forwards;
 }
 
 .content {
@@ -254,5 +255,16 @@
 
   .content {
     max-width: 400px;
+  }
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
