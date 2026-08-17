@@ -29,7 +29,7 @@ const Hero: FC = () => {
             Voir mes projets →
           </a>
           <a
-            href="/cv-gabriel-toledano.pdf"
+            href="/cv_gabriel_dev-web-front.pdf"
             className={styles.btnSecondary}
             target="_blank"
           >
