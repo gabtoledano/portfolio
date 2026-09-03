@@ -27,14 +27,16 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           ))}
         </div>
         <div className={styles.links}>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noreferrer"
-            className={styles.link}
-          >
-            <IconGithub size={16} /> Code
-          </a>
+          {!project.hideGithub && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              className={styles.link}
+            >
+              <IconGithub size={16} /> Code
+            </a>
+          )}
           {project.liveUrl && (
             <a
               href={project.liveUrl}

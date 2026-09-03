@@ -1,8 +1,8 @@
 import type { Project } from "../types";
-import argentbank from '../assets/images/projects/argentbank.webp';
-import ninaCarducci from '../assets/images/projects/nina-carducci.webp';
-import kasa from '../assets/images/projects/kasa.webp';
-import menuMaker from '../assets/images/projects/menu-maker.webp';
+import argentbank from "../assets/images/projects/argentbank.webp";
+import ninaCarducci from "../assets/images/projects/nina-carducci.webp";
+import kasa from "../assets/images/projects/kasa.webp";
+import menuMaker from "../assets/images/projects/menu-maker.webp";
 
 export const projects: Project[] = [
   {
@@ -47,6 +47,7 @@ export const projects: Project[] = [
       "Mission de cadrage technique pour une application SaaS de création de menus. Spécifications complètes, Kanban Notion de 23 cartes et veille technologique structurée.",
     stack: ["Kanban", "Agile", "Notion", "Feedly", "Architecture"],
     githubUrl: "https://github.com/gabtoledano/menu-maker",
+    hideGithub: true,
     liveUrl:
       "https://jasper-deal-5f1.notion.site/Kanban-Menu-Maker-by-Qwenta-37219b09f5948073919acfcd8f8aaff8",
     liveLabel: "Voir Kanban",
