@@ -120,3 +120,25 @@ describe("CommandPalette", () => {
     expect(onClose).toHaveBeenCalled();
   });
 });
+
+describe("CommandPalette — recherche par groupe", () => {
+  it("remonte tout un groupe quand on tape son nom", async () => {
+    const { user, input } = renderPalette();
+    await user.type(input, "proj");
+
+    // La section « Projets » et les quatre projets, pas seulement la section.
+    await waitFor(() => {
+      expect(screen.getAllByRole("option").length).toBeGreaterThan(4);
+    });
+    expect(screen.getByRole("group", { name: "Projets" })).toBeInTheDocument();
+  });
+
+  it("classe la section avant les projets qu'elle contient", async () => {
+    const { user, input } = renderPalette();
+    await user.type(input, "projets");
+
+    await waitFor(() => expect(screen.getAllByRole("option").length).toBeGreaterThan(1));
+    // Correspondance de libellé exacte : elle doit primer sur les mots-clés.
+    expect(optionNames()[0]).toBe("ProjetsSection 03");
+  });
+});

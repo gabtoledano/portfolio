@@ -137,6 +137,21 @@ export function useCommands(): Command[] {
       },
     ];
 
-    return [...navigation, ...projectCommands, ...actions, ...themes, ...links];
+    const all = [
+      ...navigation,
+      ...projectCommands,
+      ...actions,
+      ...themes,
+      ...links,
+    ];
+
+    // Le nom du groupe devient un mot-clé implicite de chacune de ses entrées :
+    // taper « proj » remonte les projets, « thème » tout le groupe Thème.
+    // Les mots-clés étant notés en dessous des libellés, une correspondance
+    // exacte de titre reste toujours en tête.
+    return all.map((command) => ({
+      ...command,
+      keywords: [...(command.keywords ?? []), command.group],
+    }));
   }, [preference, setPreference, copied, copy]);
 }
