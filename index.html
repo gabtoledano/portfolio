@@ -4,6 +4,33 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0a0a14" />
+
+    <!--
+      Thème appliqué avant le premier rendu. Sans ce script, la page s'affiche
+      en sombre puis bascule en clair une fois React monté : un flash visible
+      à chaque chargement. La clé doit rester alignée sur THEME_STORAGE_KEY.
+    -->
+    <script>
+      (function () {
+        try {
+          var raw = localStorage.getItem("gt-theme");
+          var preference = raw ? JSON.parse(raw) : "system";
+          var explicit = preference === "light" || preference === "dark";
+          var theme = explicit
+            ? preference
+            : window.matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+          document.documentElement.dataset.theme = theme;
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute("content", theme === "light" ? "#f5f6fb" : "#0a0a14");
+        } catch (error) {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -24,7 +51,6 @@
       name="keywords"
       content="développeur front-end, React, TypeScript, portfolio, Paris, junior, graphiste"
     />
-    <link rel="canonical" href="https://www.gabrieltoledano.dev/" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />

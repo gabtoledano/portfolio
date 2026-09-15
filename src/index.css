@@ -11,6 +11,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Décale les ancres pour qu'elles ne passent pas sous le header fixe */
+  scroll-padding-top: var(--header-height);
   overflow-x: hidden;
 }
 
@@ -20,6 +22,9 @@ body {
   color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color var(--duration) var(--ease-out),
+    color var(--duration) var(--ease-out);
 }
 
 a {
@@ -32,13 +37,27 @@ img {
   display: block;
 }
 
+button,
+input,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
 ::selection {
   background: var(--color-primary);
-  color: var(--color-text);
+  color: var(--color-on-primary);
+}
+
+/* Anneau de focus unique pour tout le site, visible au clavier uniquement */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -47,18 +66,42 @@ img {
 
 ::-webkit-scrollbar-thumb {
   background: var(--color-primary);
-  border-radius: 3px;
+  border-radius: var(--radius-full);
 }
 
-.fadeIn {
-  opacity: 0;
-  transform: translateY(30px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
+/* Lien d'évitement : premier élément focusable, caché tant qu'il n'a pas le focus */
+.skipLink {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 999;
+  padding: 0.65rem 1.1rem;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  transform: translateY(-160%);
+  transition: transform var(--duration) var(--ease-out);
 }
 
-.fadeIn.visible {
-  opacity: 1;
+.skipLink:focus-visible {
   transform: translateY(0);
+}
+
+/* Le mouvement est une décoration : on le coupe entièrement si l'OS le demande.
+   Les composants lisent aussi cette préférence en JS (usePrefersReducedMotion). */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

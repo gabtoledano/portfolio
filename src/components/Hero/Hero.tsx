@@ -1,146 +1,109 @@
-import type { FC } from "react";
+import type { CSSProperties } from "react";
+import { heroCode, heroFileName } from "@/data/heroCode";
+import { site } from "@/data/site";
+import { scrollToSection } from "@/lib/scrollToSection";
+import CodeWindow from "@/components/ui/CodeWindow";
+import {
+  IconArrowDown,
+  IconArrowRight,
+  IconFile,
+  IconGithub,
+  IconLinkedin,
+  IconMail,
+} from "@/components/Icons/Icons";
 import styles from "./Hero.module.css";
-import { IconGithub, IconLinkedin, IconMail } from "../Icons/Icons";
 
-const Hero: FC = () => {
+const SOCIALS = [
+  { href: site.github, label: "GitHub", icon: <IconGithub size={20} /> },
+  { href: site.linkedin, label: "LinkedIn", icon: <IconLinkedin size={20} /> },
+  { href: `mailto:${site.email}`, label: "Email", icon: <IconMail size={20} /> },
+] as const;
+
+/** Décale l'entrée des blocs les uns après les autres, en CSS. */
+const step = (index: number) => ({ "--step": index }) as CSSProperties;
+
+export default function Hero() {
   return (
-    <section className={styles.hero}>
-      <div className={styles.content}>
-        <span className={styles.badge}>
-          <span className={styles.dot}></span>
-          Disponible pour des opportunités
-        </span>
-        <h1 className={styles.title}>
-          Gabriel <br />
-          <span className={styles.titleAccent}>Toledano</span>
-        </h1>
-        <p className={styles.subtitle}>
-          Développeur front-end{" "}
-          <strong style={{ color: "var(--color-accent)" }}>junior</strong> —
-          ex-Graphiste
-        </p>
-        <p className={styles.description}>
-          Reconverti du print au code, je construis des interfaces React
-          soignées avec le même souci du détail qu'en imprimerie — mais avec la
-          liberté d'itérer.
-        </p>
-        <div className={styles.actions}>
-          <a href="#projects" className={styles.btnPrimary}>
-            Voir mes projets →
-          </a>
-          <a
-            href="/cv_gabriel_dev-web-front.pdf"
-            className={styles.btnSecondary}
-            target="_blank"
-          >
-            CV
-          </a>
+    <section className={styles.hero} aria-label="Présentation">
+      <div className={styles.aura} aria-hidden="true" />
+
+      <div className={styles.inner}>
+        <div className={styles.content}>
+          <p className={styles.badge} style={step(0)}>
+            <span className={styles.pulse} aria-hidden="true" />
+            Disponible pour des opportunités
+          </p>
+
+          <h1 className={styles.title} style={step(1)}>
+            Gabriel
+            <span className={styles.titleAccent}>Toledano</span>
+          </h1>
+
+          <p className={styles.subtitle} style={step(2)}>
+            Développeur front-end <strong>junior</strong>
+            <span className={styles.separator} aria-hidden="true">
+              /
+            </span>
+            ex-graphiste
+          </p>
+
+          <p className={styles.description} style={step(3)}>
+            Reconverti du print au code, je construis des interfaces React
+            soignées avec le même souci du détail qu'en imprimerie — mais avec
+            la liberté d'itérer.
+          </p>
+
+          <div className={styles.actions} style={step(4)}>
+            <button
+              type="button"
+              className={styles.primary}
+              onClick={() => scrollToSection("projects")}
+            >
+              Voir mes projets
+              <IconArrowRight size={16} />
+            </button>
+
+            <a
+              href={site.cvUrl}
+              className={styles.secondary}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <IconFile size={16} />
+              Mon CV
+            </a>
+          </div>
+
+          <ul className={styles.socials} style={step(5)}>
+            {SOCIALS.map((social) => (
+              <li key={social.label}>
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={social.label}
+                  className={styles.social}
+                >
+                  {social.icon}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className={styles.socials}>
-          <a
-            href="https://github.com/gabtoledano"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="GitHub"
-          >
-            <IconGithub size={22} />
-          </a>
-          <a
-            href="https://linkedin.com/in/gabrieltoledano"
-            target="_blank"
-            rel="noreferrer"
-            aria-label="LinkedIn"
-          >
-            <IconLinkedin size={22} />
-          </a>
-          <a href="mailto:gabrieltoledano19@gmail.com" aria-label="Email">
-            <IconMail size={22} />
-          </a>
+
+        <div className={styles.code} style={step(3)}>
+          <CodeWindow fileName={heroFileName} tokens={heroCode} />
         </div>
       </div>
 
-      <div className={styles.codeBlock}>
-        <div className={styles.codeHeader}>
-          <span
-            className={styles.windowDot}
-            style={{ background: "#ff5f57" }}
-          ></span>
-          <span
-            className={styles.windowDot}
-            style={{ background: "#febc2e" }}
-          ></span>
-          <span
-            className={styles.windowDot}
-            style={{ background: "#28c840" }}
-          ></span>
-          <span className={styles.fileName}>portfolio.tsx</span>
-        </div>
-        <pre className={styles.code}>
-          <code>
-            <span className={styles.comment}>
-              {"// Graphiste devenu développeur"}
-            </span>
-            {"\n"}
-            <span className={styles.keyword}>const </span>
-            <span className={styles.variable}>developer</span>
-            <span className={styles.punctuation}>{" = {"}</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.key}>name</span>
-            <span className={styles.punctuation}>: </span>
-            <span className={styles.string}>"Gabriel Toledano"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.key}>formation</span>
-            <span className={styles.punctuation}>: </span>
-            <span className={styles.string}>"OpenClassrooms"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.key}>stack</span>
-            <span className={styles.punctuation}>: [</span>
-            {"\n"}
-            {"    "}
-            <span className={styles.string}>"React"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"    "}
-            <span className={styles.string}>"Redux Toolkit"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"    "}
-            <span className={styles.string}>"Node.js"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"    "}
-            <span className={styles.string}>"TypeScript"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.punctuation}>],</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.key}>background</span>
-            <span className={styles.punctuation}>: </span>
-            <span className={styles.string}>"5 ans graphiste"</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            {"  "}
-            <span className={styles.key}>openToWork</span>
-            <span className={styles.punctuation}>: </span>
-            <span className={styles.boolean}>true</span>
-            <span className={styles.punctuation}>,</span>
-            {"\n"}
-            <span className={styles.punctuation}>{"}"}</span>
-          </code>
-        </pre>
-      </div>
-      <a href="#about" className={styles.scrollDown}>
-        <span>↓</span>
-      </a>
+      <button
+        type="button"
+        className={styles.scrollDown}
+        onClick={() => scrollToSection("about")}
+        aria-label="Aller à la section À propos"
+      >
+        <IconArrowDown size={18} />
+      </button>
     </section>
   );
-};
-
-export default Hero;
+}

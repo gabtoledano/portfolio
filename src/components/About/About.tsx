@@ -1,22 +1,36 @@
-import type { FC } from "react";
+import { site } from "@/data/site";
+import { stats, type Stat } from "@/data/stats";
+import { useCountUp } from "@/hooks/useCountUp";
+import { useReveal } from "@/hooks/useReveal";
+import Section from "@/components/ui/Section";
+import photoProfil from "@/assets/images/photo-profil.webp";
 import styles from "./About.module.css";
-import useInView from "../../hooks/useInView";
-import photoProfil from "../../assets/images/photo-profil.webp";
 
-const About: FC = () => {
-  const { ref, isInView } = useInView();
+/** Un compteur = un composant : le hook d'animation s'isole par valeur. */
+function CountStat({
+  stat,
+  enabled,
+}: {
+  stat: Extract<Stat, { kind: "count" }>;
+  enabled: boolean;
+}) {
+  const value = useCountUp(stat.value, { enabled });
 
   return (
-    <section
-      id="about"
-      ref={ref}
-      className={`${styles.about} fadeIn ${isInView ? "visible" : ""}`}
-    >
-      <div className={styles.sectionTitle}>
-        <span className={styles.number}>01 /</span>
-        <h2>À propos</h2>
-      </div>
+    <span className={styles.statValue}>
+      {value}
+      {stat.suffix}
+    </span>
+  );
+}
 
+export default function About() {
+  // Les compteurs ne démarrent qu'une fois la rangée visible, sinon
+  // l'animation se joue dans le vide pendant que l'on lit le hero.
+  const { ref, isVisible } = useReveal<HTMLDListElement>({ threshold: 0.25, rootMargin: "0px" });
+
+  return (
+    <Section id="about">
       <div className={styles.content}>
         <div className={styles.text}>
           <p>
@@ -37,7 +51,7 @@ const About: FC = () => {
             <strong>Intégrateur Web d'OpenClassrooms</strong>, que je termine
             aujourd'hui. En un peu plus d'un an, j'ai travaillé sur des projets
             concrets en React, Redux Toolkit, Node.js et gestion de projet
-            technique — — construits de A à Z, en totale autonomie.
+            technique — construits de A à Z, en totale autonomie.
           </p>
           <p>
             Mon background print m'a appris la rigueur, le souci du détail et la
@@ -45,39 +59,44 @@ const About: FC = () => {
             chaque ligne de code.
           </p>
 
-          <div className={styles.stats}>
-            <div className={styles.stat}>
-              <span className={styles.statNumber}>10+</span>
-              <span className={styles.statLabel}>Projets réalisés</span>
-            </div>
-            <div className={styles.stat}>
-              <span className={styles.statNumber}>5</span>
-              <span className={styles.statLabel}>Ans en graphisme</span>
-            </div>
-            <div className={styles.stat}>
-              <span className={styles.statCheck}>✓</span>
-              <span className={styles.statLabel}>Formation OpenClassrooms</span>
-            </div>
-          </div>
+          <dl className={styles.stats} ref={ref}>
+            {stats.map((stat) => (
+              <div key={stat.id} className={styles.stat}>
+                <dt className={styles.statLabel}>{stat.label}</dt>
+                <dd>
+                  {stat.kind === "count" ? (
+                    <CountStat stat={stat} enabled={isVisible} />
+                  ) : (
+                    <span className={styles.statBadge} aria-hidden="true">
+                      {stat.symbol}
+                    </span>
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
 
-        <div className={styles.imageWrapper}>
-          <div className={styles.photoContainer}>
+        <figure className={styles.figure}>
+          <div className={styles.photoFrame}>
             <img
               src={photoProfil}
-              alt="Gabriel Toledano"
+              alt="Portrait de Gabriel Toledano"
               className={styles.photo}
+              width={640}
+              height={760}
+              loading="lazy"
+              decoding="async"
             />
-            <div className={styles.photoOverlay}></div>
           </div>
-          <span className={styles.location}>
-            <span className={styles.locationIcon}>&gt;_</span>
-            Paris, France
-          </span>
-        </div>
+          <figcaption className={styles.location}>
+            <span className={styles.prompt} aria-hidden="true">
+              &gt;_
+            </span>
+            {site.location}
+          </figcaption>
+        </figure>
       </div>
-    </section>
+    </Section>
   );
-};
-
-export default About;
+}

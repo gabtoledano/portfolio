@@ -1,0 +1,48 @@
+.group {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding: 3px;
+  gap: 2px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-fill);
+}
+
+/* La pastille se déplace de sa propre largeur × l'index actif : aucune mesure
+   JavaScript, et la transition reste sur le compositeur. */
+.thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-strong);
+  transform: translateX(calc(var(--active-index, 1) * 30px));
+  transition: transform var(--duration) var(--ease-spring);
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: color var(--transition);
+}
+
+.button:hover {
+  color: var(--color-text);
+}
+
+.button[aria-checked="true"] {
+  color: var(--color-accent);
+}

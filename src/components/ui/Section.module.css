@@ -1,0 +1,55 @@
+.section {
+  composes: container from "../../styles/shared.module.css";
+  padding-block: var(--spacing-xl);
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.section[data-revealed="true"] .heading {
+  opacity: 1;
+  transform: none;
+}
+
+.index {
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  font-weight: 500;
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-size: var(--text-section);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.description {
+  margin-top: 1rem;
+  max-width: 46ch;
+  color: var(--color-text-muted);
+  font-size: var(--text-md);
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out) 100ms;
+}
+
+.section[data-revealed="true"] .description {
+  opacity: 1;
+}
+
+.heading + *:not(.description) {
+  margin-top: clamp(2rem, 5vw, 4rem);
+}
+
+.description + * {
+  margin-top: clamp(1.75rem, 3vw, 2.5rem);
+}

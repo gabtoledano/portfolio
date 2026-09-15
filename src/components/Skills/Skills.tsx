@@ -1,38 +1,36 @@
-import type { FC } from "react";
+import type { CSSProperties } from "react";
+import { skills } from "@/data/skills";
+import Reveal from "@/components/ui/Reveal";
+import Section from "@/components/ui/Section";
+import SpotlightCard from "@/components/ui/SpotlightCard";
 import styles from "./Skills.module.css";
-import { skills } from "../../data/skills";
-import useInView from "../../hooks/useInView";
 
-const Skills: FC = () => {
-  const { ref, isInView } = useInView();
-
+export default function Skills() {
   return (
-    <section
+    <Section
       id="skills"
-      ref={ref}
-      className={`${styles.skills} fadeIn ${isInView ? "visible" : ""}`}
+      description="Ce que j'utilise au quotidien, regroupé par famille."
     >
-      <div className={styles.sectionTitle}>
-        <span className={styles.number}>02 /</span>
-        <h2>Compétences</h2>
-      </div>
-
-      <div className={styles.grid}>
-        {skills.map((category) => (
-          <div key={category.id} className={styles.card}>
+      <Reveal className={styles.grid}>
+        {skills.map((category, index) => (
+          <SpotlightCard
+            key={category.id}
+            className={styles.card}
+            // Le délai voyage en variable CSS : la cascade est décrite en CSS,
+            // pas recalculée à chaque rendu.
+            style={{ "--delay": `${index * 90}ms` } as CSSProperties}
+          >
             <h3 className={styles.cardTitle}>{category.title}</h3>
-            <div className={styles.pills}>
+            <ul className={styles.pills}>
               {category.skills.map((skill) => (
-                <span key={skill} className={styles.pill}>
+                <li key={skill} className={styles.pill}>
                   {skill}
-                </span>
+                </li>
               ))}
-            </div>
-          </div>
+            </ul>
+          </SpotlightCard>
         ))}
-      </div>
-    </section>
+      </Reveal>
+    </Section>
   );
-};
-
-export default Skills;
+}

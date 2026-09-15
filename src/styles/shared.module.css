@@ -1,0 +1,8 @@
+/* Conteneur partagé, consommé via `composes` par les modules qui en ont besoin.
+   Remplace les `padding: X 20rem` + 3 media queries dupliqués dans 6 fichiers. */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
