@@ -1,33 +1,143 @@
-:root {
-  /* Couleurs */
-  --color-bg: #0a0a14;
-  --color-bg-card: #111122;
-  --color-bg-card-hover: #1a1a2e;
-  --color-primary: #4f46e5;
-  --color-secondary: #7680a0;
-  --color-primary-hover: #4338ca;
-  --color-primary-light: #818cf8;
-  --color-text: #ffffff;
-  --color-text-muted: #a0a0b0;
-  --color-accent: #22d3ee;
-  --color-border: rgba(255, 255, 255, 0.08);
+/* ==========================================================================
+   Design tokens
+   Les valeurs non chromatiques vivent sur :root, les couleurs sont dupliquées
+   par thème. ThemeProvider pose data-theme="light|dark" sur <html>, donc une
+   seule source de vérité pilote toute la feuille de style.
+   ========================================================================== */
 
+:root {
   /* Typographie */
-  --font-family: "Inter", sans-serif;
-  --font-mono: "DM Mono", "Courier New", monospace;
+  --font-family: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, "SF Mono", "Courier New", monospace;
+
+  /* Échelle typographique fluide */
+  --text-hero: clamp(2.75rem, 1.2rem + 6.4vw, 5rem);
+  --text-section: clamp(1.75rem, 1.1rem + 2.2vw, 2.5rem);
+  --text-lg: 1.0625rem;
+  --text-md: 0.9375rem;
+  --text-sm: 0.8125rem;
+  --text-xs: 0.75rem;
+
+  /* Layout — remplace les `padding: X 20rem` + 3 media queries par fichier */
+  --container: 80rem;
+  --gutter: clamp(1.25rem, 5vw, 4rem);
+  --header-height: 4.5rem;
 
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
   --spacing-md: 2rem;
   --spacing-lg: 4rem;
-  --spacing-xl: 6rem;
+  --spacing-xl: clamp(4rem, 10vw, 7rem);
 
   /* Border radius */
   --radius-sm: 6px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-full: 999px;
 
-  /* Transitions */
-  --transition: 0.2s ease;
+  /* Mouvement — neutralisé par prefers-reduced-motion (voir index.css) */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 150ms;
+  --duration: 250ms;
+  --duration-slow: 600ms;
+  --transition: var(--duration-fast) var(--ease-out);
+
+  /* Profondeur */
+  --z-header: 100;
+  --z-menu: 150;
+  --z-overlay: 500;
+}
+
+/* --------------------------------- Sombre -------------------------------- */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-bg: #0a0a14;
+  --color-bg-elevated: #111122;
+  --color-bg-subtle: #1a1a2e;
+  --color-glass: rgba(10, 10, 20, 0.72);
+  --color-scrim: rgba(10, 10, 20, 0.95);
+
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #818cf8;
+  --color-on-primary: #ffffff;
+
+  --color-accent: #22d3ee;
+  --color-accent-soft: rgba(34, 211, 238, 0.08);
+  --color-accent-line: rgba(34, 211, 238, 0.4);
+
+  --color-text: #ffffff;
+  --color-text-muted: #a0a0b0;
+  --color-text-subtle: #7680a0;
+
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-fill: rgba(255, 255, 255, 0.06);
+  --color-fill-hover: rgba(255, 255, 255, 0.1);
+
+  --color-success: #22c55e;
+  --color-danger: #f87171;
+
+  --shadow-glow: 0 0 60px rgba(99, 102, 241, 0.15), 0 0 120px rgba(99, 102, 241, 0.08);
+  --shadow-lifted: 0 24px 60px -20px rgba(0, 0, 0, 0.8);
+  --spotlight: rgba(129, 140, 248, 0.16);
+
+  /* Coloration syntaxique */
+  --code-comment: #8b949e;
+  --code-keyword: #c792ea;
+  --code-variable: #ffffff;
+  --code-punctuation: #a0a0b0;
+  --code-key: #7ec8e3;
+  --code-string: #c3e88d;
+  --code-boolean: #c792ea;
+  --code-number: #f78c6c;
+}
+
+/* ---------------------------------- Clair -------------------------------- */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-bg: #f5f6fb;
+  --color-bg-elevated: #ffffff;
+  --color-bg-subtle: #eceefa;
+  --color-glass: rgba(245, 246, 251, 0.75);
+  --color-scrim: rgba(255, 255, 255, 0.95);
+
+  --color-primary: #4f46e5;
+  --color-primary-hover: #4338ca;
+  --color-primary-light: #4338ca;
+  --color-on-primary: #ffffff;
+
+  --color-accent: #0e7490;
+  --color-accent-soft: rgba(14, 116, 144, 0.07);
+  --color-accent-line: rgba(14, 116, 144, 0.35);
+
+  --color-text: #0d1020;
+  --color-text-muted: #53566e;
+  --color-text-subtle: #6b6f88;
+
+  --color-border: rgba(13, 16, 32, 0.1);
+  --color-border-strong: rgba(13, 16, 32, 0.2);
+  --color-fill: rgba(13, 16, 32, 0.045);
+  --color-fill-hover: rgba(13, 16, 32, 0.08);
+
+  --color-success: #15803d;
+  --color-danger: #dc2626;
+
+  --shadow-glow: 0 18px 50px -24px rgba(79, 70, 229, 0.45);
+  --shadow-lifted: 0 24px 50px -24px rgba(13, 16, 32, 0.25);
+  --spotlight: rgba(79, 70, 229, 0.1);
+
+  --code-comment: #6a737d;
+  --code-keyword: #8250df;
+  --code-variable: #0d1020;
+  --code-punctuation: #57606a;
+  --code-key: #0550ae;
+  --code-string: #0a7a41;
+  --code-boolean: #8250df;
+  --code-number: #b35900;
 }

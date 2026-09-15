@@ -1,0 +1,38 @@
+.section {
+  composes: container from "../../styles/shared.module.css";
+  padding-block: var(--spacing-xl);
+}
+
+.heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+}
+
+.section[data-revealed="true"] .heading {
+  opacity: 1;
+  transform: none;
+}
+
+.index {
+  color: var(--color-accent);
+  font-size: var(--text-md);
+  font-weight: 500;
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-size: var(--text-section);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.1;
+}
+
+.heading + * {
+  margin-top: clamp(2rem, 5vw, 4rem);
+}

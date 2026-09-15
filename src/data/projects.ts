@@ -1,8 +1,8 @@
-import type { Project } from "../types";
-import argentbank from "../assets/images/projects/argentbank.webp";
-import ninaCarducci from "../assets/images/projects/nina-carducci.webp";
-import kasa from "../assets/images/projects/kasa.webp";
-import menuMaker from "../assets/images/projects/menu-maker.webp";
+import type { Project } from "@/types";
+import argentbank from "@/assets/images/projects/argentbank.webp";
+import ninaCarducci from "@/assets/images/projects/nina-carducci.webp";
+import kasa from "@/assets/images/projects/kasa.webp";
+import menuMaker from "@/assets/images/projects/menu-maker.webp";
 
 export const projects: Project[] = [
   {
@@ -24,6 +24,7 @@ export const projects: Project[] = [
     description:
       "Optimisation complète d'un site portfolio de photographe. Performance portée de 73 à 99/100, accessibilité et SEO à 100/100 sur Lighthouse.",
     stack: ["Lighthouse", "WebP", "Schema.org", "SEO", "WCAG"],
+    highlight: "Perf. 73 → 99",
     githubUrl: "https://github.com/gabtoledano/ninacarducci",
     liveUrl: "https://gabtoledano.github.io/ninacarducci",
     image: ninaCarducci,
@@ -46,6 +47,7 @@ export const projects: Project[] = [
     description:
       "Mission de cadrage technique pour une application SaaS de création de menus. Spécifications complètes, Kanban Notion de 23 cartes et veille technologique structurée.",
     stack: ["Kanban", "Agile", "Notion", "Feedly", "Architecture"],
+    highlight: "Kanban 23 cartes",
     githubUrl: "https://github.com/gabtoledano/menu-maker",
     hideGithub: true,
     liveUrl:
