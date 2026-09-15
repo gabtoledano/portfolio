@@ -84,16 +84,20 @@ describe("CommandPalette", () => {
 
   it("exécute la commande sélectionnée à la touche Entrée", async () => {
     const { user, input } = renderPalette();
-    await user.type(input, "sombre");
-    await waitFor(() => expect(optionNames()[0]).toContain("Thème sombre"));
+    // Le défaut étant sombre, on bascule vers clair : sans changement d'état
+    // réel, l'assertion passerait sans rien prouver.
+    expect(document.documentElement.dataset.theme).toBe("dark");
+
+    await user.type(input, "clair");
+    await waitFor(() => expect(optionNames()[0]).toContain("Thème clair"));
 
     await user.keyboard("{Enter}");
 
     // Le thème traverse le contexte jusqu'à l'attribut du document.
     await waitFor(() => {
-      expect(document.documentElement.dataset.theme).toBe("dark");
+      expect(document.documentElement.dataset.theme).toBe("light");
     });
-    expect(localStorage.getItem("gt-theme")).toBe('"dark"');
+    expect(localStorage.getItem("gt-theme")).toBe('"light"');
   });
 
   it("garde la palette ouverte pour les commandes marquées keepOpen", async () => {

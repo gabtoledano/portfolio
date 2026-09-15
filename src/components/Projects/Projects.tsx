@@ -40,10 +40,7 @@ export default function Projects() {
   );
 
   return (
-    <Section
-      id="projects"
-      description="Quatre projets menés de bout en bout pendant ma formation."
-    >
+    <Section id="projects">
       <div className={styles.toolbar} role="group" aria-label="Filtrer par catégorie">
         {FILTERS.map((option) => (
           <button

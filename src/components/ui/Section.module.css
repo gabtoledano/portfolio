@@ -33,23 +33,6 @@
   line-height: 1.1;
 }
 
-.description {
-  margin-top: 1rem;
-  max-width: 46ch;
-  color: var(--color-text-muted);
-  font-size: var(--text-md);
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-out) 100ms;
-}
-
-.section[data-revealed="true"] .description {
-  opacity: 1;
-}
-
-.heading + *:not(.description) {
+.heading + * {
   margin-top: clamp(2rem, 5vw, 4rem);
-}
-
-.description + * {
-  margin-top: clamp(1.75rem, 3vw, 2.5rem);
 }

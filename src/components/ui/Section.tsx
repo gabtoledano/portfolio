@@ -6,8 +6,6 @@ import styles from "./Section.module.css";
 interface SectionProps {
   id: SectionId;
   children: ReactNode;
-  /** Phrase d'accroche optionnelle sous le titre. */
-  description?: string;
   className?: string;
 }
 
@@ -20,12 +18,7 @@ interface SectionProps {
  * sont désormais lus dans `SECTIONS`, donc l'ordre du site se change à un seul
  * endroit.
  */
-export default function Section({
-  id,
-  children,
-  description,
-  className,
-}: SectionProps) {
+export default function Section({ id, children, className }: SectionProps) {
   const { ref, isVisible } = useReveal<HTMLElement>();
   const descriptor = SECTIONS.find((section) => section.id === id);
 
@@ -45,7 +38,6 @@ export default function Section({
           {descriptor?.label}
         </h2>
       </header>
-      {description && <p className={styles.description}>{description}</p>}
       {children}
     </section>
   );

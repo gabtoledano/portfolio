@@ -7,10 +7,7 @@ import styles from "./Skills.module.css";
 
 export default function Skills() {
   return (
-    <Section
-      id="skills"
-      description="Ce que j'utilise au quotidien, regroupé par famille."
-    >
+    <Section id="skills">
       <Reveal className={styles.grid}>
         {skills.map((category, index) => (
           <SpotlightCard
