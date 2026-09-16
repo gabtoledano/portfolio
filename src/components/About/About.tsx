@@ -48,8 +48,8 @@ export default function About() {
           </p>
           <p>
             J'ai suivi la formation{" "}
-            <strong>Intégrateur Web d'OpenClassrooms</strong>, que je termine
-            aujourd'hui. En un peu plus d'un an, j'ai travaillé sur des projets
+            <strong>Intégrateur Web d'OpenClassrooms</strong> que j'ai terminé avec succès.
+            En un peu plus d'un an, j'ai travaillé sur des projets
             concrets en React, Redux Toolkit, Node.js et gestion de projet
             technique — construits de A à Z, en totale autonomie.
           </p>
