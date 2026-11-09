@@ -1,55 +1,87 @@
 import type { CodeToken } from "@/types";
 
+export type Theme = "dark" | "light";
+
+interface ThemeValue {
+  value: string;
+  alias: string | null;
+}
+
 /**
  * Un token tel que le décrit `tokens.agents.json`, le fichier que le dépôt
- * design-tokens génère pour les agents IA.
+ * design-tokens génère pour les agents IA. `value` et `alias` sont ceux du
+ * thème par défaut (sombre) ; `themes` existe pour les tokens qui changent
+ * avec le thème.
  */
 export interface DesignToken {
   name: string;
   cssVariable: string;
   value: string;
-  type: string;
+  type: string | null;
   tier: "primitive" | "semantic";
   alias: string | null;
   description: string | null;
+  themes?: Record<Theme, ThemeValue>;
 }
 
 /** Forme brute d'une entrée du JSON, avant validation. */
+interface RawThemeValue {
+  value: string | number;
+  alias: string | null;
+}
+
 interface RawToken {
   name: string;
   cssVariable: string;
-  value: string;
-  type: string;
+  value: string | number;
+  type: string | null;
   tier: string;
   alias: string | null;
   description: string | null;
+  themes?: { dark: RawThemeValue; light: RawThemeValue };
 }
+
+const toThemeValue = ({ value, alias }: RawThemeValue): ThemeValue => ({
+  value: String(value),
+  alias,
+});
 
 /**
  * Transforme les entrées du JSON en tokens typés. Le JSON importé ne connaît
- * que des `string` : `tier` est donc ramené explicitement à son union, sans
- * transtypage aveugle.
+ * que des `string` : `tier` est donc ramené explicitement à son union, et les
+ * valeurs numériques (z-index) en texte, sans transtypage aveugle.
  */
 export function parseTokens(raw: readonly RawToken[]): DesignToken[] {
-  return raw.map((token) => ({
+  return raw.map(({ themes, ...token }) => ({
     ...token,
+    value: String(token.value),
     tier: token.tier === "semantic" ? "semantic" : "primitive",
+    ...(themes && {
+      themes: { dark: toThemeValue(themes.dark), light: toThemeValue(themes.light) },
+    }),
   }));
 }
 
+/** Valeur et alias d'un token dans un thème donné. */
+export function themeValue(token: DesignToken, theme: Theme): ThemeValue {
+  return token.themes?.[theme] ?? { value: token.value, alias: token.alias };
+}
+
 /**
- * Déclaration CSS d'un token, telle que Style Dictionary l'écrit avec
- * `outputReferences` : un token sémantique pointe vers la variable de sa
+ * Déclaration CSS d'un token dans un thème, telle que Style Dictionary l'écrit
+ * avec `outputReferences` : un token sémantique pointe vers la variable de sa
  * primitive au lieu de recopier la valeur.
  */
 export function cssDeclaration(
   token: DesignToken,
   byName: ReadonlyMap<string, DesignToken>,
+  theme: Theme = "dark",
 ): { property: string; value: string } {
-  const target = token.alias ? byName.get(token.alias) : undefined;
+  const { value, alias } = themeValue(token, theme);
+  const target = alias ? byName.get(alias) : undefined;
   return {
     property: token.cssVariable,
-    value: target ? `var(${target.cssVariable})` : token.value,
+    value: target ? `var(${target.cssVariable})` : value,
   };
 }
 

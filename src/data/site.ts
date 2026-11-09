@@ -13,6 +13,14 @@ export const site = {
   linkedin: "https://linkedin.com/in/gabrieltoledano",
 } as const;
 
+/**
+ * Ancre de l'étude de cas « design tokens », en tête de la section Projets :
+ * gabrieltoledano.dev/#design-tokens. Elle vit ici, et pas avec les données
+ * de l'étude de cas, pour que la palette ⌘K puisse y renvoyer sans charger le
+ * JSON des tokens.
+ */
+export const caseStudyId = "design-tokens";
+
 export interface SectionDescriptor {
   id: string;
   label: string;

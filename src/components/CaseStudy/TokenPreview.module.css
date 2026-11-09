@@ -1,6 +1,5 @@
-/* Toutes les couleurs et tous les espacements de l'aperçu sont des tokens
-   sémantiques du dépôt design-tokens, posés en variables locales par le
-   composant. Les rayons et la typographie restent ceux du portfolio. */
+/* Uniquement des tokens sémantiques du site : l'aperçu suit le thème actif
+   sans aucune règle propre à un thème. */
 
 .figure {
   display: flex;
@@ -9,8 +8,8 @@
 }
 
 .frame {
-  padding: calc(var(--space-inset-md) * 2);
-  background: var(--color-background-subtle);
+  padding: var(--spacing-md);
+  background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
 }
@@ -18,48 +17,50 @@
 .card {
   display: flex;
   flex-direction: column;
-  gap: var(--space-inset-sm);
-  padding: var(--space-inset-md);
-  background: var(--color-background-surface);
-  color: var(--color-text-default);
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm);
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  box-shadow: 0 12px 30px -18px rgba(17, 24, 39, 0.35);
+  box-shadow: var(--shadow-lifted);
 }
 
 .cardTitle {
-  font-size: 1rem;
+  font-size: var(--text-md);
   font-weight: 600;
 }
 
 .cardText {
   font-size: var(--text-sm);
   line-height: 1.5;
+  color: var(--color-text-muted);
 }
 
 .actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-inset-md);
-  margin-top: var(--space-inset-sm);
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-xs);
 }
 
 .button {
-  padding: var(--space-inset-sm) var(--space-inset-md);
-  background: var(--color-action-primary);
-  color: var(--color-text-on-action);
-  border-radius: var(--radius-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+  border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: 600;
   transition: background var(--transition);
 }
 
 .button:hover {
-  background: var(--color-action-primary-hover);
+  background: var(--color-primary-hover);
 }
 
 .link {
-  color: var(--color-action-primary);
+  color: var(--color-accent);
   font-size: var(--text-sm);
   font-weight: 500;
 }

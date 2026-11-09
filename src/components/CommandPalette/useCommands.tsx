@@ -1,9 +1,8 @@
 import { useMemo } from "react";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { useTheme } from "@/providers/ThemeContext";
-import { caseStudyId } from "@/data/designTokens";
 import { projects } from "@/data/projects";
-import { SECTIONS, site } from "@/data/site";
+import { SECTIONS, caseStudyId, site } from "@/data/site";
 import { scrollToSection } from "@/lib/scrollToSection";
 import type { Command } from "@/types";
 import {
