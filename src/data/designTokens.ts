@@ -1,14 +1,13 @@
-import agents from "./design-tokens.agents.json";
+import agents from "design-tokens/build/tokens.agents.json";
 import { parseTokens, type DesignToken } from "@/lib/designTokens";
 
 /**
  * Données de l'étude de cas « design tokens ».
  *
- * `design-tokens.agents.json` est une copie du fichier généré par le dépôt
- * github.com/gabtoledano/design-tokens (build/tokens.agents.json), comme
- * `src/styles/tokens.css`. Les deux viennent de la même source : la charte de
- * ce site. Les extraits de code, la galerie et l'aperçu de l'étude de cas sont
- * calculés à partir de ce fichier.
+ * `tokens.agents.json` vient du paquet design-tokens, comme les variables CSS
+ * importées dans `index.css` : la même source, la charte de ce site. Les
+ * extraits de code, la galerie et l'aperçu de l'étude de cas sont calculés à
+ * partir de ce fichier.
  *
  * Ce module n'est importé que par l'étude de cas, chargée à la demande : le
  * JSON ne pèse pas sur le premier chargement de la page.

@@ -1,7 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap");
-/* Variables générées par le dépôt github.com/gabtoledano/design-tokens :
-   ne pas modifier tokens.css à la main, le régénérer là-bas puis le recopier. */
-@import "./styles/tokens.css";
+/* Toutes les variables de la charte viennent du paquet design-tokens
+   (github.com/gabtoledano/design-tokens), installé comme dépendance npm.
+   Pour récupérer une nouvelle version : npm update design-tokens */
+@import "design-tokens/build/tokens.css";
 
 /* Indique au navigateur le thème actif (barres de défilement, champs natifs).
    Ce n'est pas un token : il reste ici, à côté des variables. */
