@@ -93,6 +93,13 @@ renvoyé sur le premier champ fautif.
 le curseur écrivent dans des variables CSS depuis une ref, cadencés par
 `requestAnimationFrame`. Aucun de ces deux composants ne rend plus d'une fois.
 
+**Étude de cas design tokens.** En tête de la section Projets (ancre
+`#design-tokens`). La galerie, les extraits de code, l'aperçu et le calcul de
+contraste sont tous dérivés de `src/data/design-tokens.agents.json`, copie du
+fichier généré par le dépôt [design-tokens](https://github.com/gabtoledano/design-tokens).
+L'aperçu reçoit les tokens en variables CSS locales, sans rien ajouter à
+`:root`. Pour mettre à jour, recopier `build/tokens.agents.json` depuis ce dépôt.
+
 **Accessibilité.** Lien d'évitement, piège à focus sur les surfaces modales,
 menu mobile marqué `inert` à la fermeture, navigation au clavier de bout en
 bout, et `prefers-reduced-motion` respecté en CSS comme en JavaScript.
@@ -104,5 +111,6 @@ npm run test
 ```
 
 La suite couvre la logique pure (moteur de recherche floue, découpe des tokens
-de code, réducteur du formulaire) et un parcours d'intégration complet de la
+de code, réducteur du formulaire, conversion JSON → code coloré, contraste
+WCAG des design tokens) et un parcours d'intégration complet de la
 palette : frappe au clavier → contexte thème → attribut du document.

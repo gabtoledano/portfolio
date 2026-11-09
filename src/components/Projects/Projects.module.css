@@ -1,3 +1,11 @@
+.subtitle {
+  margin-top: clamp(3.5rem, 7vw, 5rem);
+  margin-bottom: 1.25rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
 .toolbar {
   display: flex;
   flex-wrap: wrap;
