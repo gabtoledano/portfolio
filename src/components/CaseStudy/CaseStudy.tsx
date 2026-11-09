@@ -1,51 +1,57 @@
+import { useEffect } from "react";
 import CodeWindow from "@/components/ui/CodeWindow";
 import { IconExternalLink, IconGithub } from "@/components/Icons/Icons";
 import {
-  caseStudyId,
   designTokensAgentsFileUrl,
   designTokensRepo,
   primitiveTokens,
   semanticTokens,
+  themedTokens,
   tokens,
   tokensByName,
 } from "@/data/designTokens";
-import { cssDeclaration, jsonToCodeTokens } from "@/lib/designTokens";
+import { caseStudyId } from "@/data/site";
+import { cssDeclaration, jsonToCodeTokens, type Theme } from "@/lib/designTokens";
+import { scrollToSection } from "@/lib/scrollToSection";
 import type { CodeToken } from "@/types";
 import TokenGallery from "./TokenGallery";
 import TokenPreview from "./TokenPreview";
 import styles from "./CaseStudy.module.css";
 
-const STACK = ["DTCG", "Style Dictionary 5.8", "GitHub Actions", "Node.js"];
+const STACK = ["DTCG", "Style Dictionary 5.8", "Thèmes clair / sombre", "GitHub Actions"];
 
-/* Les extraits de code sont calculés à partir du JSON, pas recopiés. */
-const CSS_EXCERPT_NAMES = [
-  "color.blue.500",
-  "color.action.primary",
-  "color.action.primary-hover",
-  "space.inset.md",
+/* Les extraits de code sont calculés à partir du JSON, pas recopiés. Ils
+   reprennent la structure réelle de tokens.css : la palette et les valeurs
+   communes sur :root, puis un bloc par thème. */
+const CSS_BLOCKS: { selector: string; theme: Theme; names: string[] }[] = [
+  { selector: ":root", theme: "dark", names: ["color.indigo.600", "spacing.md"] },
+  { selector: ':root, [data-theme="dark"]', theme: "dark", names: ["color.bg", "color.primary"] },
+  { selector: '[data-theme="light"]', theme: "light", names: ["color.bg", "color.primary"] },
 ];
 
 const cssExcerpt: CodeToken[] = [
   { kind: "comment", text: "/* Extrait de tokens.css */" },
-  { kind: "punctuation", text: "\n" },
-  { kind: "keyword", text: ":root" },
-  { kind: "punctuation", text: " {\n" },
-  ...CSS_EXCERPT_NAMES.flatMap((name): CodeToken[] => {
-    const token = tokensByName.get(name);
-    if (!token) return [];
-    const { property, value } = cssDeclaration(token, tokensByName);
-    return [
-      { kind: "punctuation", text: "  " },
-      { kind: "key", text: property },
-      { kind: "punctuation", text: ": " },
-      { kind: "string", text: value },
-      { kind: "punctuation", text: ";\n" },
-    ];
-  }),
-  { kind: "punctuation", text: "}" },
+  ...CSS_BLOCKS.flatMap(({ selector, theme, names }): CodeToken[] => [
+    { kind: "punctuation", text: "\n" },
+    { kind: "keyword", text: selector },
+    { kind: "punctuation", text: " {\n" },
+    ...names.flatMap((name): CodeToken[] => {
+      const token = tokensByName.get(name);
+      if (!token) return [];
+      const { property, value } = cssDeclaration(token, tokensByName, theme);
+      return [
+        { kind: "punctuation", text: "  " },
+        { kind: "key", text: property },
+        { kind: "punctuation", text: ": " },
+        { kind: "string", text: value },
+        { kind: "punctuation", text: ";\n" },
+      ];
+    }),
+    { kind: "punctuation", text: "}" },
+  ]),
 ];
 
-const agentExample = tokensByName.get("color.background.surface");
+const agentExample = tokensByName.get("color.bg");
 const jsonExcerpt: CodeToken[] = agentExample ? jsonToCodeTokens(agentExample) : [];
 
 const PIPELINE = [
@@ -57,28 +63,34 @@ const PIPELINE = [
   {
     label: "Build",
     file: "Style Dictionary 5.8",
-    text: "Le format CSS standard, plus un format maison « json/agents ».",
+    text: `Deux thèmes (${themedTokens.length} tokens chacun) dans un seul fichier CSS, plus un format maison « json/agents ».`,
   },
   {
     label: "Sorties",
     file: "tokens.css · tokens.agents.json",
-    text: "Des variables CSS pour le code, un JSON à plat pour les agents IA.",
+    text: "Les variables de ce site, et un JSON à plat pour les agents IA.",
   },
   {
     label: "Contrôle",
     file: "GitHub Actions",
-    text: "Une description manque ou le build n'est pas à jour : la CI passe au rouge.",
+    text: "Description manquante, thème incomplet ou build pas à jour : la CI passe au rouge.",
   },
 ];
 
 /**
  * Étude de cas mise en avant en tête de la section Projets.
  *
- * Le contenu chiffré (nombre de tokens, extraits, galerie, aperçu, contraste)
- * est entièrement dérivé de `tokens.agents.json` : la section démontre ce
- * qu'elle raconte.
+ * Le contenu chiffré (nombre de tokens, extraits, galerie, contraste) est
+ * entièrement dérivé de `tokens.agents.json`, et les couleurs du site viennent
+ * du même dépôt : la section démontre ce qu'elle raconte.
  */
 export default function CaseStudy() {
+  // Chargée à la demande, la section n'existe pas encore quand le navigateur
+  // traite l'ancre d'un lien partagé (/#design-tokens) : on fait le saut ici.
+  useEffect(() => {
+    if (window.location.hash === `#${caseStudyId}`) scrollToSection(caseStudyId, "auto");
+  }, []);
+
   return (
     <article
       id={caseStudyId}
@@ -95,6 +107,10 @@ export default function CaseStudy() {
           projet protège le plancher quand une IA écrit l'interface : chaque
           token dit à quoi il sert, et la CI refuse ceux qui ne le disent pas.
           Le plafond, lui, reste une affaire de designer.
+        </p>
+        <p className={styles.proof}>
+          Le site que vous regardez l'utilise : toutes ses couleurs,
+          ses espacements et ses deux thèmes sortent de ce dépôt.
         </p>
         <ul className={styles.stack} aria-label="Technologies">
           {STACK.map((tech) => (
@@ -139,17 +155,18 @@ export default function CaseStudy() {
         </div>
         <p className={styles.note}>
           Le JSON pour agents ajoute ce que le CSS ne dit pas : le niveau du
-          token, son alias et surtout sa description, c'est-à-dire quand
-          l'utiliser.
+          token, son alias dans chaque thème et surtout sa description,
+          c'est-à-dire quand l'utiliser.
         </p>
       </div>
 
       <div className={styles.block}>
-        <h4 className={styles.blockTitle}>Les tokens sémantiques</h4>
+        <h4 className={styles.blockTitle}>Les tokens de ce site</h4>
         <p className={styles.text}>
-          Cette galerie n'est pas recopiée à la main : elle est lue dans{" "}
-          <code className={styles.inlineCode}>tokens.agents.json</code>, le même
-          fichier que celui que lisent les agents.
+          Une sélection lue dans{" "}
+          <code className={styles.inlineCode}>tokens.agents.json</code>. Les
+          pastilles utilisent les mêmes variables que le reste de la page :
+          changez de thème en haut de l'écran, elles suivent.
         </p>
         <div className={styles.galleryGrid}>
           <TokenGallery />

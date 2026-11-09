@@ -40,6 +40,15 @@
   max-width: 64ch;
 }
 
+.proof {
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--color-text);
+  max-width: 64ch;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-accent);
+}
+
 .stack {
   display: flex;
   flex-wrap: wrap;

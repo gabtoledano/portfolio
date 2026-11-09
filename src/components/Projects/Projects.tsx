@@ -1,13 +1,18 @@
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useMemo, useState } from "react";
 import { projects } from "@/data/projects";
 import { site } from "@/data/site";
 import { PROJECT_TAGS, type ProjectFilter } from "@/types";
 import { IconGithub } from "@/components/Icons/Icons";
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
-import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import ProjectCard from "./ProjectCard";
 import styles from "./Projects.module.css";
+
+/**
+ * L'étude de cas embarque le JSON des design tokens (~25 ko) : elle est chargée
+ * à la demande pour ne pas alourdir le premier chargement de la page.
+ */
+const CaseStudy = lazy(() => import("@/components/CaseStudy/CaseStudy"));
 
 /**
  * Nombre de projets par catégorie, calculé une fois pour toutes au chargement
@@ -44,9 +49,11 @@ export default function Projects() {
     <Section id="projects">
       {/* Le projet qui porte le positionnement passe en premier, en étude de
           cas complète ; les autres projets suivent sous forme de cartes. */}
-      <Reveal>
-        <CaseStudy />
-      </Reveal>
+      <Suspense fallback={null}>
+        <Reveal>
+          <CaseStudy />
+        </Reveal>
+      </Suspense>
 
       <h3 className={styles.subtitle}>Autres projets</h3>
 

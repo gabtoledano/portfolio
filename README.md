@@ -14,7 +14,7 @@ Application React monopage, écrite en TypeScript strict et servie par Vite.
 | Interface     | React 19 (`use`, contexte comme composant, `useId`)        |
 | Langage       | TypeScript en mode `strict` + `noUncheckedIndexedAccess`   |
 | Build         | Vite 8                                                     |
-| Styles        | CSS Modules, variables CSS, zéro dépendance UI             |
+| Styles        | CSS Modules, design tokens générés, zéro dépendance UI     |
 | Tests         | Vitest + Testing Library (jsdom)                           |
 | Qualité       | Oxlint                                                     |
 | Formulaire    | EmailJS                                                    |
@@ -66,7 +66,7 @@ src/
 ├── hooks/                Hooks maison, un fichier par hook
 ├── lib/                  Logique pure et testable (recherche floue, tokens)
 ├── providers/            Contextes thème et palette de commandes
-├── styles/               Tokens de design et conteneur partagé
+├── styles/               Design tokens générés (tokens.css) et conteneur partagé
 └── types/                Types partagés
 ```
 
@@ -93,12 +93,23 @@ renvoyé sur le premier champ fautif.
 le curseur écrivent dans des variables CSS depuis une ref, cadencés par
 `requestAnimationFrame`. Aucun de ces deux composants ne rend plus d'une fois.
 
+**Design tokens.** Toutes les variables du site (couleurs des deux thèmes,
+typographie, espacements, arrondis, mouvement) viennent du dépôt
+[design-tokens](https://github.com/gabtoledano/design-tokens), qui les génère
+avec Style Dictionary au format DTCG. Ne pas modifier `src/styles/tokens.css` à
+la main : changer le token dans ce dépôt, lancer `npm run build`, puis recopier
+les deux fichiers générés.
+
+| Fichier généré (design-tokens) | Copie ici                            |
+| ------------------------------ | ------------------------------------ |
+| `build/tokens.css`             | `src/styles/tokens.css`              |
+| `build/tokens.agents.json`     | `src/data/design-tokens.agents.json` |
+
 **Étude de cas design tokens.** En tête de la section Projets (ancre
-`#design-tokens`). La galerie, les extraits de code, l'aperçu et le calcul de
-contraste sont tous dérivés de `src/data/design-tokens.agents.json`, copie du
-fichier généré par le dépôt [design-tokens](https://github.com/gabtoledano/design-tokens).
-L'aperçu reçoit les tokens en variables CSS locales, sans rien ajouter à
-`:root`. Pour mettre à jour, recopier `build/tokens.agents.json` depuis ce dépôt.
+`#design-tokens`), chargée à la demande pour que le JSON des tokens (~25 ko)
+ne pèse pas sur le premier chargement. Les extraits de code, la galerie et le
+calcul de contraste sont dérivés de `design-tokens.agents.json` ; les pastilles
+sont peintes avec les variables CSS elles-mêmes et suivent donc le thème.
 
 **Accessibilité.** Lien d'évitement, piège à focus sur les surfaces modales,
 menu mobile marqué `inert` à la fermeture, navigation au clavier de bout en

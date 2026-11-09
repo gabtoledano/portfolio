@@ -5,20 +5,18 @@ import { parseTokens, type DesignToken } from "@/lib/designTokens";
  * Données de l'étude de cas « design tokens ».
  *
  * `design-tokens.agents.json` est une copie du fichier généré par le dépôt
- * github.com/gabtoledano/design-tokens (build/tokens.agents.json). La galerie,
- * les extraits de code et l'aperçu de la section sont tous calculés à partir
- * de ce fichier : la même source que celle que lisent les agents IA.
+ * github.com/gabtoledano/design-tokens (build/tokens.agents.json), comme
+ * `src/styles/tokens.css`. Les deux viennent de la même source : la charte de
+ * ce site. Les extraits de code, la galerie et l'aperçu de l'étude de cas sont
+ * calculés à partir de ce fichier.
  *
- * Pour mettre à jour : recopier build/tokens.agents.json ici.
+ * Ce module n'est importé que par l'étude de cas, chargée à la demande : le
+ * JSON ne pèse pas sur le premier chargement de la page.
  */
-/** Ancre partageable de l'étude de cas : gabrieltoledano.dev/#design-tokens */
-export const caseStudyId = "design-tokens";
-
 export const designTokensRepo = "https://github.com/gabtoledano/design-tokens";
 export const designTokensAgentsFileUrl = `${designTokensRepo}/blob/main/build/tokens.agents.json`;
 
 export const tokens: readonly DesignToken[] = parseTokens(agents.tokens);
-export const agentRules: readonly string[] = agents.rules;
 
 export const tokensByName: ReadonlyMap<string, DesignToken> = new Map(
   tokens.map((token) => [token.name, token]),
@@ -26,3 +24,12 @@ export const tokensByName: ReadonlyMap<string, DesignToken> = new Map(
 
 export const semanticTokens = tokens.filter((token) => token.tier === "semantic");
 export const primitiveTokens = tokens.filter((token) => token.tier === "primitive");
+export const themedTokens = tokens.filter((token) => token.themes);
+
+/** Récupère des tokens par leur nom, dans l'ordre demandé. */
+export function pickTokens(names: readonly string[]): DesignToken[] {
+  return names.flatMap((name) => {
+    const token = tokensByName.get(name);
+    return token ? [token] : [];
+  });
+}

@@ -15,5 +15,10 @@ export const skills: SkillCategory[] = [
     id: 3,
     title: 'Qualité & SEO',
     skills: ['Lighthouse', 'WebP / Lazy loading', 'Accessibilité WCAG', 'HTML sémantique', 'SEO technique', 'Schema.org JSON-LD', 'Open Graph', 'CSS Modules', 'Responsive design']
+  },
+  {
+    id: 4,
+    title: 'Design systems',
+    skills: ['Design tokens (DTCG)', 'Style Dictionary', 'Thèmes clair / sombre', "Tokens lisibles par l'IA", 'CI GitHub Actions', 'Figma']
   }
 ]

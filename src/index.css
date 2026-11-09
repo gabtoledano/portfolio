@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap");
-@import "./styles/variables.css";
+/* Variables générées par le dépôt github.com/gabtoledano/design-tokens :
+   ne pas modifier tokens.css à la main, le régénérer là-bas puis le recopier. */
+@import "./styles/tokens.css";
+
+/* Indique au navigateur le thème actif (barres de défilement, champs natifs).
+   Ce n'est pas un token : il reste ici, à côté des variables. */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+}
 
 *,
 *::before,
