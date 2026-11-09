@@ -1,8 +1,16 @@
+/* Quatre catégories : une grille de 2 × 2 sur desktop, une colonne sur mobile
+   (même point de rupture que le menu du header). */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.25rem;
   align-items: start;
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .card {
