@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useCopyToClipboard } from "@/hooks/useCopyToClipboard";
 import { useTheme } from "@/providers/ThemeContext";
+import { caseStudyId } from "@/data/designTokens";
 import { projects } from "@/data/projects";
 import { SECTIONS, site } from "@/data/site";
 import { scrollToSection } from "@/lib/scrollToSection";
@@ -52,6 +53,15 @@ export function useCommands(): Command[] {
         keywords: [section.id],
         perform: () => scrollToSection(section.id),
       })),
+      {
+        id: "nav-case-study",
+        label: "Étude de cas : design tokens",
+        group: "Navigation",
+        icon: <IconArrowRight size={16} />,
+        hint: "Projets",
+        keywords: ["design system", "dtcg", "style dictionary"],
+        perform: () => scrollToSection(caseStudyId),
+      },
     ];
 
     const projectCommands = projects.map<Command>((project) => ({

@@ -1,0 +1,257 @@
+.caseStudy {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vw, 3rem);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ------------------------------- En-tête -------------------------------- */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.kicker {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.title {
+  font-size: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text);
+  max-width: 24ch;
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 64ch;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  list-style: none;
+}
+
+.tech {
+  background: var(--color-fill);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+  padding: 0.22rem 0.6rem;
+  border-radius: var(--radius-sm);
+}
+
+/* -------------------------------- Blocs --------------------------------- */
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.blockTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.text {
+  font-size: var(--text-md);
+  line-height: 1.8;
+  color: var(--color-text-muted);
+  max-width: 68ch;
+}
+
+.text em {
+  color: var(--color-text);
+}
+
+.note {
+  font-size: var(--text-sm);
+  line-height: 1.7;
+  color: var(--color-text-subtle);
+  max-width: 68ch;
+}
+
+.inlineCode {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--color-text);
+  background: var(--color-fill);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+}
+
+/* ------------------------------- Pipeline ------------------------------- */
+
+.pipeline {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: 0.75rem;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.1rem;
+  background: var(--color-fill);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.stepIndex {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-accent);
+}
+
+.stepLabel {
+  font-size: var(--text-md);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.stepFile {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-primary-light);
+  overflow-wrap: anywhere;
+}
+
+.stepText {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ------------------------------ Code, galerie ---------------------------- */
+
+.codeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 24rem), 1fr));
+  gap: 1rem;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .galleryGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* -------------------------------- Leviers -------------------------------- */
+
+.levers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: 1rem;
+}
+
+.lever {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1.1rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.badgeDone,
+.badgeNext {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  padding: 0.2rem 0.65rem;
+  border: 1px solid;
+  border-radius: var(--radius-full);
+}
+
+.badgeDone {
+  color: var(--color-success);
+}
+
+.badgeNext {
+  color: var(--color-accent);
+  border-color: var(--color-accent-line);
+}
+
+.leverTitle {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.leverText {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* --------------------------------- Liens --------------------------------- */
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.primaryLink,
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  font-weight: 500;
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.primaryLink {
+  background: var(--color-primary);
+  color: var(--color-on-primary);
+}
+
+.primaryLink:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.secondaryLink {
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+
+.secondaryLink:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  transform: translateY(-2px);
+}

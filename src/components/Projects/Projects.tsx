@@ -5,6 +5,7 @@ import { PROJECT_TAGS, type ProjectFilter } from "@/types";
 import { IconGithub } from "@/components/Icons/Icons";
 import Reveal from "@/components/ui/Reveal";
 import Section from "@/components/ui/Section";
+import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import ProjectCard from "./ProjectCard";
 import styles from "./Projects.module.css";
 
@@ -41,6 +42,14 @@ export default function Projects() {
 
   return (
     <Section id="projects">
+      {/* Le projet qui porte le positionnement passe en premier, en étude de
+          cas complète ; les autres projets suivent sous forme de cartes. */}
+      <Reveal>
+        <CaseStudy />
+      </Reveal>
+
+      <h3 className={styles.subtitle}>Autres projets</h3>
+
       <div className={styles.toolbar} role="group" aria-label="Filtrer par catégorie">
         {FILTERS.map((option) => (
           <button
