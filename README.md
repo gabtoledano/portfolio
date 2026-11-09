@@ -14,7 +14,7 @@ Application React monopage, écrite en TypeScript strict et servie par Vite.
 | Interface     | React 19 (`use`, contexte comme composant, `useId`)        |
 | Langage       | TypeScript en mode `strict` + `noUncheckedIndexedAccess`   |
 | Build         | Vite 8                                                     |
-| Styles        | CSS Modules, design tokens générés, zéro dépendance UI     |
+| Styles        | CSS Modules, paquet design-tokens, zéro dépendance UI      |
 | Tests         | Vitest + Testing Library (jsdom)                           |
 | Qualité       | Oxlint                                                     |
 | Formulaire    | EmailJS                                                    |
@@ -66,7 +66,7 @@ src/
 ├── hooks/                Hooks maison, un fichier par hook
 ├── lib/                  Logique pure et testable (recherche floue, tokens)
 ├── providers/            Contextes thème et palette de commandes
-├── styles/               Design tokens générés (tokens.css) et conteneur partagé
+├── styles/               Conteneur partagé (les tokens viennent du paquet design-tokens)
 └── types/                Types partagés
 ```
 
@@ -94,21 +94,26 @@ le curseur écrivent dans des variables CSS depuis une ref, cadencés par
 `requestAnimationFrame`. Aucun de ces deux composants ne rend plus d'une fois.
 
 **Design tokens.** Toutes les variables du site (couleurs des deux thèmes,
-typographie, espacements, arrondis, mouvement) viennent du dépôt
-[design-tokens](https://github.com/gabtoledano/design-tokens), qui les génère
-avec Style Dictionary au format DTCG. Ne pas modifier `src/styles/tokens.css` à
-la main : changer le token dans ce dépôt, lancer `npm run build`, puis recopier
-les deux fichiers générés.
+typographie, espacements, arrondis, mouvement) viennent du paquet
+[design-tokens](https://github.com/gabtoledano/design-tokens), installé comme
+dépendance npm depuis GitHub. `src/index.css` importe
+`design-tokens/build/tokens.css`, et l'étude de cas lit
+`design-tokens/build/tokens.agents.json`. Aucune valeur de la charte n'est
+écrite dans ce dépôt.
 
-| Fichier généré (design-tokens) | Copie ici                            |
-| ------------------------------ | ------------------------------------ |
-| `build/tokens.css`             | `src/styles/tokens.css`              |
-| `build/tokens.agents.json`     | `src/data/design-tokens.agents.json` |
+Pour changer la charte : modifier le token dans le dépôt design-tokens et
+pousser sur `main`, puis ici :
+
+```bash
+npm update design-tokens   # récupère le dernier commit de design-tokens
+```
+
+et commiter le `package-lock.json`, qui fixe la version exacte utilisée.
 
 **Étude de cas design tokens.** En tête de la section Projets (ancre
 `#design-tokens`), chargée à la demande pour que le JSON des tokens (~25 ko)
 ne pèse pas sur le premier chargement. Les extraits de code, la galerie et le
-calcul de contraste sont dérivés de `design-tokens.agents.json` ; les pastilles
+calcul de contraste sont dérivés de `tokens.agents.json` ; les pastilles
 sont peintes avec les variables CSS elles-mêmes et suivent donc le thème.
 
 **Accessibilité.** Lien d'évitement, piège à focus sur les surfaces modales,
