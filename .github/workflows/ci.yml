@@ -1,0 +1,31 @@
+# Vérifie chaque pull request avant qu'elle puisse être mergée :
+# analyse du code, tests, puis build. Si une étape échoue, la PR passe au rouge.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verifier:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Analyser le code
+        run: npm run lint
+
+      - name: Lancer les tests
+        run: npm test
+
+      - name: Construire le site
+        run: npm run build
