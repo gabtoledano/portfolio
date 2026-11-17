@@ -130,3 +130,10 @@ La suite couvre la logique pure (moteur de recherche floue, découpe des tokens
 de code, réducteur du formulaire, conversion JSON → code coloré, contraste
 WCAG des design tokens) et un parcours d'intégration complet de la
 palette : frappe au clavier → contexte thème → attribut du document.
+
+Elle teste aussi des composants comme un visiteur les utilise : la carte projet
+(titre, image décrite, liens), le sélecteur de thème (clic → thème appliqué et
+retenu) et la section Projets (étude de cas chargée à la demande, filtres).
+
+Une CI GitHub Actions (`.github/workflows/ci.yml`) lance l'analyse, les tests
+et le build à chaque pull request : une PR qui casse un test passe au rouge.
